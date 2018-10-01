@@ -1,0 +1,37 @@
+<p>
+  home works!
+</p>
+
+<form [formGroup]="userdetails" (ngSubmit)="onsubmit()">
+
+   <input type="text" formControlName='firstname'  name="firstname"   pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" >
+        <div *ngIf="userdetails.controls['firstname'].hasError('required')" class="errormsg">First Name Required</div>
+        <div *ngIf="userdetails.controls['firstname'].hasError('pattern')" > Please Enter only name </div>
+  
+
+  <input type="text" formControlName='lastname' name="lastname"   pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$"  >
+   <div *ngIf="userdetails.controls['lastname'].hasError('required')" class="errormsg">First Name Required</div>
+   <div *ngIf="userdetails.controls['lastname'].hasError('pattern')" > Please Enter only name </div>
+   
+   <input type="text"  formControlName="phonenumber" name="phonenumber"  placeholder="Phone No" pattern="[0-9]+" maxlength="10" minlength="10" >
+		<div *ngIf="userdetails.controls['phonenumber'].hasError('required')" class="errormsg">Phone Number Required</div>
+		<div *ngIf="userdetails.controls['phonenumber'].hasError('pattern')" class="errormsg">Enter only number</div>
+		<div *ngIf="userdetails.controls['phonenumber'].hasError('maxlength')" class="errormsg">Enter only 10 digit number</div>
+		<div *ngIf="userdetails.controls['phonenumber'].hasError('minlength')" class="errormsg">Enter only 10 digit number</div>  
+  
+      <input type="email" formControlName="email" name="email" placeholder="Email"  >  
+			 <div *ngIf="userdetails.controls['email'].hasError('required')" class="errormsg">Phone Number Required</div>	  
+			 <div *ngIf="userdetails.controls['email'].hasError('email')" class="errormsg"> Email Not Valid</div>
+   
+     <input type="password" formControlName="password" class="form-control" (input)="checkNewPwd($event.target.value)" id="pwd" placeholder="Enter Password"  minlength="5"/>
+			<div *ngIf="userdetails.controls['password'].hasError('required')" class="errormsg"  >Plaese enter  new Password</div>
+			 <div *ngIf="userdetails.controls['password'].hasError('minlength')|| pwdLeh" class="errormsg" >Enter 5 minimum length password </div>
+	 
+	 
+	 <input type="password" formControlName="cpassword" class="form-control" (input)="checkConformPwd($event.target.value)" id="rpwd"  minlength="5" placeholder="Re Enter Password"/>
+		<div *ngIf="userdetails.controls['cpassword'].hasError('required')" class="errormsg">Plaese enter Conform Password</div>
+		<div *ngIf="userdetails.controls['cpassword'].hasError('minlength')|| pwdLeh" class="errormsg" >Enter 5 minimum length password </div>
+	 
+ 
+   <input type="submit" name="" value="save">
+</form>
